@@ -21,7 +21,9 @@
 // 유윈
 $(document).ready(function(){
   var answer = $("div#question").attr("data-answer");
-  var TotalPoint = 100;
+  var TotalQuestion    // 총 문제수
+  var TotalPoint = 100;  //총 점수
+  var TotalTime = 1000;  //남은 시간 TotalQuestion * 10;
   $("li").click(function(e){
     e.preventDefault();
     var x = $(this).attr("id");
@@ -30,20 +32,26 @@ $(document).ready(function(){
       var correct = document.getElementById('correct');
       correct.play();
       TotalPoint = TotalPoint + 10;
-      alert(TotalPoint);
+      TotalTime = TotalTime + 10;
     }else{
       // alert("다시해봐!!");
       var wrong = document.getElementById('wrong');
       wrong.play();
-      TotalPoint = TotalPoint - 2;
-      alert(TotalPoint);
+      TotalPoint = TotalPoint - 5;
+      TotalTime = TotalTime - 5;
     }
   });
+
+  
+//문제 보기 위에 롤오버하면 사운드 발생
+
 $('.qnum').mouseover(function(){
   var soundPlay = document.getElementById('beep');
    soundPlay.play();
   });
-});
+
+
+
 
 // ---------------포인트 표시--------------
 // 정답 클릭시마다---> 
@@ -53,7 +61,19 @@ $('.qnum').mouseover(function(){
 // 
 // 스테이지 클리어시--->
 // 남은시간(초) * 10점 하여 총점에 합산
-// 
+//
+
+// 스테이지 클리어 되면 발생 함수
+var StageFinish = function(){
+  var CurrentTime //진행된 시간(초)
+  var LeftTime = TotalTime - CurrentTime;
+  var SolvedQuestion // 풀었다고 플래그된 문제수
+  var UnsolverQuestion = TotalQuestion - SolvedQuestion;  
+  TotalPoint  = TotalPoint + (LeftTime * 100) //남은시간 * 100 하여 총점에 더하기
+  TotalPoint = TotalPoint + (SolvedQuestion * 10) //맞은 문제 * 10하여 총점에 더하기
+} 
+
+
 
 
 // --------------시간 타이머--------------
@@ -69,5 +89,27 @@ $('.qnum').mouseover(function(){
 // 2. 남은시간==0 --> 게임오버
 // 
 
+var Timer = function(){
+
+  //게임진행 시작
+  Timer = Timer - 1 // 게임이 시작되면 1초씩 시간이 갑니다.
 
 
+  //게임 끝
+  if(Timer == 0){
+  StageFinish();
+  } // 타이머가 0이되면 게임이 끝납니다.
+  // 스테이지가 클리어 됩니다.
+}
+
+//------------게임은 삼세판-------------------
+//라운드 1
+
+//라운드 2
+
+//라운드 3
+
+
+
+
+});
