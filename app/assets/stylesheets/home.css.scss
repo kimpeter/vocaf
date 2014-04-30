@@ -1,0 +1,45 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.qbox, .qnum{
+    float: left;
+    width: 60px;
+    height: 70px;
+    text-align: center;
+    border: 1px black solid;
+}
+p{
+
+}
+.qbox{
+    width: 308px;
+    background: #faa;
+}
+.qnum{
+    background: #afa;
+}
+.qnum:hover{
+    background: red;
+}
+.qbox_hover{
+    background: #f88;
+}
+.qnum_hover{
+    background:#8f8;
+}
+li.qnum{
+    list-style-type: none;   
+}
+ul.qnums{
+    padding: 0px;
+}
+.card{
+    width:310px;
+    height:144px;
+    border: 1px red solid;
+}
+
+
+
