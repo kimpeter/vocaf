@@ -21,6 +21,7 @@
 // 유윈
 $(document).ready(function(){
   var answer = $("div#question").attr("data-answer");
+  var TotalPoint = 100;
   $("li").click(function(e){
     e.preventDefault();
     var x = $(this).attr("id");
@@ -28,10 +29,14 @@ $(document).ready(function(){
       // $(this).css("background","black");
       var correct = document.getElementById('correct');
       correct.play();
+      TotalPoint = TotalPoint + 10;
+      alert(TotalPoint);
     }else{
       // alert("다시해봐!!");
       var wrong = document.getElementById('wrong');
       wrong.play();
+      TotalPoint = TotalPoint - 2;
+      alert(TotalPoint);
     }
   });
 $('.qnum').mouseover(function(){
